@@ -12,6 +12,7 @@ import com.google.common.io.Closer
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.tree.ClassNode
