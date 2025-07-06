@@ -1,6 +1,7 @@
 package com.dexcompiler.gradle.extension
 
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 
 /**
  * Extension for configuring the DEX compiler plugin.
@@ -33,7 +34,7 @@ abstract class DexCompilerExtension {
     /**
      * Input directories or files containing class files to compile.
      */
-    abstract val inputDirs: Property<Set<String>>
+    abstract val inputDirs: SetProperty<String>
     
     /**
      * Output file for the compiled DEX.

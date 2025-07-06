@@ -10,9 +10,26 @@
 
 ## Usage
 
-### Apply the Plugin
+### Apply the Plugin from JitPack
 
 Add the plugin to your `build.gradle.kts`:
+
+```kotlin
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+    dependencies {
+        classpath("com.github.MMRLApp:Gradle:TAG")
+    }
+}
+
+apply(plugin = "com.dexcompiler.gradle")
+```
+
+Or if using Maven Central:
 
 ```kotlin
 plugins {
@@ -69,13 +86,21 @@ dexCompiler {
 
 ## Example Projects
 
-### Basic Java/Kotlin Project
+### Basic Java/Kotlin Project (with JitPack)
 
 ```kotlin
-plugins {
-    kotlin("jvm") version "1.9.21"
-    id("com.dexcompiler.gradle") version "1.0.0"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+    dependencies {
+        classpath("com.github.MMRLApp:Gradle:TAG")
+    }
 }
+
+apply(plugin = "com.dexcompiler.gradle")
 
 dexCompiler {
     inputDirs.set(setOf("build/classes/kotlin/main"))
@@ -83,13 +108,21 @@ dexCompiler {
 }
 ```
 
-### Android Plugin Project
+### Android Plugin Project (with JitPack)
 
 ```kotlin
-plugins {
-    kotlin("jvm") version "1.9.21"
-    id("com.dexcompiler.gradle") version "1.0.0"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+    dependencies {
+        classpath("com.github.MMRLApp:Gradle:TAG")
+    }
 }
+
+apply(plugin = "com.dexcompiler.gradle")
 
 dexCompiler {
     detectPluginClasses.set(true)
