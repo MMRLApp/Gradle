@@ -53,7 +53,7 @@ abstract class DexCompilerExtension {
         detectPluginClasses.convention(false)
         minSdkVersion.convention(26)
         debuggable.convention(true)
-        inputDirs.convention(setOf("build/classes"))
+        inputDirs.convention(emptySet()) // Empty set triggers auto-detection
         outputFile.convention("build/outputs/dex/classes.dex")
         pluginClassFile.convention("build/outputs/dex/plugin-class.txt")
     }

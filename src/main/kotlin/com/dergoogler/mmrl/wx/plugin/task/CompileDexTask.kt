@@ -59,6 +59,18 @@ abstract class CompileDexTask : DefaultTask() {
         
         val dexOutputDir = outputFile.get().asFile.parentFile
         
+        // Log input files for debugging
+        logger.lifecycle("CompileDex: Input files found:")
+        input.files.forEach { file ->
+            logger.lifecycle("  - ${file.absolutePath}")
+        }
+        
+        if (input.files.isEmpty()) {
+            logger.warn("CompileDex: No input files found! Make sure your Kotlin/Java files are compiled first.")
+            logger.warn("CompileDex: Run './gradlew compileKotlin' or './gradlew classes' before running compileDex")
+            return
+        }
+        
         // Ensure output directory exists
         dexOutputDir.mkdirs()
 

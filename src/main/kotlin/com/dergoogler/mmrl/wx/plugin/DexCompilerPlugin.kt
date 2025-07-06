@@ -35,7 +35,35 @@ class DexCompilerPlugin : Plugin<Project> {
             
             // Configure input files
             task.input.from(project.provider {
-                extension.inputDirs.get().map { dir ->
+                val inputDirs = extension.inputDirs.get()
+                if (inputDirs.isEmpty()) {
+                    // Auto-detect compilation outputs if no explicit input directories are set
+                    val autoDetectedDirs = mutableSetOf<String>()
+                    
+                    // Check for Kotlin compilation output
+                    project.tasks.findByName("compileKotlin")?.let {
+                        autoDetectedDirs.add("build/classes/kotlin/main")
+                    }
+                    
+                    // Check for Java compilation output
+                    project.tasks.findByName("compileJava")?.let {
+                        autoDetectedDirs.add("build/classes/java/main")
+                    }
+                    
+                    // Check subprojects for compilation outputs
+                    project.subprojects.forEach { subproject ->
+                        subproject.tasks.findByName("compileKotlin")?.let {
+                            autoDetectedDirs.add("${subproject.name}/build/classes/kotlin/main")
+                        }
+                        subproject.tasks.findByName("compileJava")?.let {
+                            autoDetectedDirs.add("${subproject.name}/build/classes/java/main")
+                        }
+                    }
+                    
+                    autoDetectedDirs.ifEmpty { setOf("build/classes") }
+                } else {
+                    inputDirs
+                }.map { dir ->
                     project.fileTree(dir) {
                         it.include("**/*.class")
                     }
@@ -60,7 +88,7 @@ class DexCompilerPlugin : Plugin<Project> {
         project.afterEvaluate {
             val compileDexTask = project.tasks.named(TASK_NAME)
             
-            // Make compileDex depend on compilation tasks
+            // Make compileDex depend on compilation tasks in main project
             project.tasks.findByName("compileKotlin")?.let { compileKotlin ->
                 compileDexTask.configure { it.dependsOn(compileKotlin) }
             }
@@ -71,6 +99,21 @@ class DexCompilerPlugin : Plugin<Project> {
             
             project.tasks.findByName("classes")?.let { classes ->
                 compileDexTask.configure { it.dependsOn(classes) }
+            }
+            
+            // Also depend on compilation tasks in subprojects
+            project.subprojects.forEach { subproject ->
+                subproject.tasks.findByName("compileKotlin")?.let { compileKotlin ->
+                    compileDexTask.configure { it.dependsOn(compileKotlin) }
+                }
+                
+                subproject.tasks.findByName("compileJava")?.let { compileJava ->
+                    compileDexTask.configure { it.dependsOn(compileJava) }
+                }
+                
+                subproject.tasks.findByName("classes")?.let { classes ->
+                    compileDexTask.configure { it.dependsOn(classes) }
+                }
             }
         }
         

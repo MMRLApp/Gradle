@@ -65,20 +65,16 @@ publishing {
             pom {
                 name.set("DEX Compiler Gradle Plugin")
                 description.set("A Gradle plugin for compiling Java/Kotlin classes to Android DEX format")
-                url.set("https://github.com/your-username/dex-gradle")
-                
-                licenses {
-                    license {
-                        name.set("GNU Lesser General Public License v3.0")
-                        url.set("https://www.gnu.org/licenses/lgpl-3.0.html")
-                    }
-                }
+                url.set("https://github.com/MMRLApp/Gradle")
                 
                 developers {
                     developer {
-                        id.set("developer")
-                        name.set("Developer Name")
-                        email.set("developer@example.com")
+                        id.set("MMRLApp")
+                        name.set("MMRLApp")
+                    }
+                    developer {
+                        id.set("DerGoogler")
+                        name.set("Der_Googler")
                     }
                 }
             }
