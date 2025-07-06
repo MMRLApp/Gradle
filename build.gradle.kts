@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.21"
-    id("gradle-plugin")
-    id("maven-publish")
+    `java-gradle-plugin`
 }
 
 group = "com.dexcompiler.gradle"
