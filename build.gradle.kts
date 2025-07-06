@@ -28,6 +28,10 @@ dependencies {
     implementation("com.android.tools:r8:8.2.42")
     implementation("com.android.tools.build:builder:8.2.0")
     
+    // Additional Android build dependencies
+    implementation("com.android.tools:common:31.2.0")
+    implementation("com.android.tools:sdk-common:31.2.0")
+    
     // ASM for bytecode analysis
     implementation("org.ow2.asm:asm:9.6")
     implementation("org.ow2.asm:asm-tree:9.6")

@@ -7,6 +7,7 @@ import com.android.builder.dexing.ClassFileInputs
 import com.android.builder.dexing.DexArchiveBuilder
 import com.android.builder.dexing.DexParameters
 import com.android.builder.dexing.r8.ClassFileProviderFactory
+import com.android.ide.common.blame.MessageReceiver
 import com.dexcompiler.gradle.extension.DexCompilerExtension
 import com.google.common.io.Closer
 import org.gradle.api.DefaultTask
@@ -74,7 +75,7 @@ abstract class CompileDexTask : DefaultTask() {
                         .also { closer.register(it) },
                     desugarClasspath = ClassFileProviderFactory(listOf<Path>()).also { closer.register(it) },
                     coreLibDesugarConfig = null,
-                    coreLibDesugarOutputKeepRuleFile = null,
+                    enableApiModeling = false,
                     messageReceiver = MessageReceiverImpl(
                         ErrorFormatMode.HUMAN_READABLE,
                         LoggerFactory.getLogger(CompileDexTask::class.java)
@@ -94,13 +95,9 @@ abstract class CompileDexTask : DefaultTask() {
 
                     dexBuilder.convert(
                         files.stream(),
-                        dexOutputDir.toPath()
+                        dexOutputDir.toPath(),
+                        null // globalSyntheticsOutput
                     )
-
-                    // Process annotations if plugin detection is enabled
-                    if (extension.detectPluginClasses.get()) {
-                        processPluginAnnotations(files, extension)
-                    }
                 }
         }
 
