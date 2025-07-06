@@ -1,4 +1,4 @@
-package com.dexcompiler.gradle.task
+package com.dergoogler.mmrl.wx.plugin.task
 
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.errors.MessageReceiverImpl
@@ -8,7 +8,7 @@ import com.android.builder.dexing.DexArchiveBuilder
 import com.android.builder.dexing.DexParameters
 import com.android.builder.dexing.r8.ClassFileProviderFactory
 import com.android.ide.common.blame.MessageReceiver
-import com.dexcompiler.gradle.extension.DexCompilerExtension
+import com.dergoogler.mmrl.wx.plugin.extension.DexCompilerExtension
 import com.google.common.io.Closer
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileCollection

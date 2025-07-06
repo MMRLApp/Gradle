@@ -1,4 +1,4 @@
-package com.dexcompiler.gradle.extension
+package com.dergoogler.mmrl.wx.plugin.extension
 
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty

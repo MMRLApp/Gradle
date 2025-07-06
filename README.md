@@ -26,14 +26,14 @@ buildscript {
     }
 }
 
-apply(plugin = "com.dexcompiler.gradle")
+apply(plugin = "com.dergoogler.mmrl.wx.plugin")
 ```
 
 Or if using Maven Central:
 
 ```kotlin
 plugins {
-    id("com.dexcompiler.gradle") version "1.0.0"
+    id("com.dergoogler.mmrl.wx.plugin") version "1.0.0"
 }
 ```
 
@@ -100,7 +100,7 @@ buildscript {
     }
 }
 
-apply(plugin = "com.dexcompiler.gradle")
+apply(plugin = "com.dergoogler.mmrl.wx.plugin")
 
 dexCompiler {
     inputDirs.set(setOf("build/classes/kotlin/main"))
@@ -122,7 +122,7 @@ buildscript {
     }
 }
 
-apply(plugin = "com.dexcompiler.gradle")
+apply(plugin = "com.dergoogler.mmrl.wx.plugin")
 
 dexCompiler {
     detectPluginClasses.set(true)

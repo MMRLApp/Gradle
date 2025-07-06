@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.dexcompiler.gradle"
+group = "com.dergoogler.mmrl.wx.plugin"
 version = "1.0.0"
 
 java {
@@ -49,8 +49,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("dexCompilerPlugin") {
-            id = "com.dexcompiler.gradle"
-            implementationClass = "com.dexcompiler.gradle.DexCompilerPlugin"
+            id = "com.dergoogler.mmrl.wx.plugin"
+            implementationClass = "com.dergoogler.mmrl.wx.plugin.DexCompilerPlugin"
             displayName = "DEX Compiler Plugin"
             description = "A Gradle plugin for compiling Java/Kotlin classes to Android DEX format"
         }

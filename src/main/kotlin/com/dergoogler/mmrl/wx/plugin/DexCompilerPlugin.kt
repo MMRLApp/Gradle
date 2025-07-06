@@ -1,7 +1,7 @@
-package com.dexcompiler.gradle
+package com.dergoogler.mmrl.wx.plugin
 
-import com.dexcompiler.gradle.extension.DexCompilerExtension
-import com.dexcompiler.gradle.task.CompileDexTask
+import com.dergoogler.mmrl.wx.plugin.extension.DexCompilerExtension
+import com.dergoogler.mmrl.wx.plugin.task.CompileDexTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
